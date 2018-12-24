@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {Route,Switch,Redirect} from 'react-router-dom';
+import Rotas from './Rotas';
+
 import './App.css';
+import './css/bootstrap/dist/bootstrap.min.css';
+import './css/bootstrap/dist/themes/cosmo.css';
+//import './css/bootstrap/dist/themes/materia.css';
+import './css/bootstrap/dist/themes/novo-condensed.css';
+import './css/index.css';
+
+import Topo from './components/basicos/Topo.js';
+import Breadcrumb from './components/basicos/Breadcrumb.js';
 
 class App extends Component {
+
+  constructor(){
+
+    super();
+    this.state = { CO_UNIDADE: ''};
+
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Topo/>
+        <div className="app-body">
+          <main className="main">
+              <Breadcrumb/>   
+              <Switch>       
+                  {Rotas.map((route, idx) => {
+                      /*
+                      console.log(route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                          <route.component {...props} />
+                        )} />)
+                        : (null));
+                      */
+                      return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                          <route.component {...props} />
+                        )} />)
+                        : (null);
+                    },
+                  )}
+                  <Redirect from="/" to="/inicio" />   
+              </Switch>
+          </main>
+        </div>
       </div>
     );
   }
