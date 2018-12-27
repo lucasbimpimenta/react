@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Route,Switch,Redirect} from 'react-router-dom';
+
 import Rotas from './Rotas';
 
 import './App.css';
@@ -11,6 +12,8 @@ import './css/index.css';
 
 import Topo from './components/basicos/Topo.js';
 import Breadcrumb from './components/basicos/Breadcrumb.js';
+
+//const store = createStore();
 
 class App extends Component {
 
@@ -50,5 +53,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

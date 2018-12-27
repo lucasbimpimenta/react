@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import AsyncSelect from 'react-select/lib/Async';
+import MaskedInput from 'react-text-mask'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 import EmpresaBotaoAdd from '../empresa/EmpresaBotaoAdd.js';
+
+const mask100Percent = createNumberMask({
+    prefix: '',
+    suffix: '%', // This will put the dollar sign at the end, with a space.
+    includeThousandsSeparator: false, // (boolean): whether or not to separate thousands. Defaults to to true.
+    thousandsSeparatorSymbol: '.', // (string): character with which to separate thousands. Default to ','.
+    allowDecimal: false, //whether or not to allow the user to enter a fraction with the amount. Default to false.
+    decimalSymbol: ',', //character that will act as a decimal point. Defaults to '.'
+    decimalLimit: 2, // how many digits to allow after the decimal. Defaults to 2
+    integerLimit: 3, //limit the length of the integer number. Defaults to null for unlimited
+    requireDecimal: false, // whether or not to always include a decimal point and placeholder for decimal digits after the integer. Defaults to false.
+    allowNegative: false, //whether or not to allow negative numbers. Defaults to false
+    allowLeadingZeroes: true
+})
 
 function mascaraCnpj(valor) {
     valor = '00000000000000' + valor;
@@ -112,8 +128,15 @@ export default class RegistroPrecoCadastrar extends Component {
                                         </div>
                                     </div>
                                     <div className="col-md-1 mb-3">
-                                        <label className="label-caixa-form" htmlFor="NO_UNIDADE">BDI</label>
-                                        <input type="text" className="form-control form-control-sm" id="NO_UNIDADE" placeholder="Unidade" defaultValue="25%" required/>
+                                        <label className="label-caixa-form" htmlFor="VR_BDI">BDI</label>
+                                        <MaskedInput
+                                            mask={mask100Percent}
+                                            className="form-control form-control-sm "
+                                            placeholder="BDI"
+                                            guide={true}
+                                            id="VR_BDI"
+                                            required
+                                        />
                                         <div className="valid-feedback">
                                             Válido
                                         </div>
@@ -122,8 +145,15 @@ export default class RegistroPrecoCadastrar extends Component {
                                         </div>
                                     </div>
                                     <div className="col-md-1 mb-3">
-                                        <label className="label-caixa-form" htmlFor="NO_UNIDADE">Mobilização</label>
-                                        <input type="text" className="form-control form-control-sm" id="NO_UNIDADE" placeholder="Unidade" defaultValue="5%" required/>
+                                        <label className="label-caixa-form" htmlFor="VR_MOBILIZACAO">Mobilização</label>
+                                        <MaskedInput
+                                            mask={mask100Percent}
+                                            className="form-control form-control-sm "
+                                            placeholder="Mobilização"
+                                            guide={true}
+                                            id="VR_MOBILIZACAO"
+                                            required
+                                        />
                                         <div className="valid-feedback">
                                             Válido
                                         </div>
