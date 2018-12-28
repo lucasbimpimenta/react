@@ -73,7 +73,7 @@ export default class EmpresaModal extends Component {
                             onAfterOpen={this.afterOpenModal}
                             onRequestClose={this.closeModal}
                             style={customStyles}
-                            contentLabel="Example Modal"
+                            contentLabel="Empresa"
                             shouldCloseOnOverlayClick={false}
                         >
                             <form onSubmit={this.envia}>

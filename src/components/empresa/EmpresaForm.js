@@ -13,15 +13,16 @@ class EmpresaForm extends Component {
     constructor() {
         super();
 
-        this.state = { existe: null}
+        this.existe = this.props;
     }
 
     verificaCNPJ(cnpj){
       console.log(cnpj);
-      //this.props.comenta(this.props.foto.id,this.NU_CNPJ.value);
+      this.props.existe(this.NU_CNPJ.value);
     }
 
     render() {
+        console.log('this.existe', this.existe);
         return (
             <div>
                 <div className="form-row">
@@ -71,4 +72,10 @@ class EmpresaForm extends Component {
     
 }
 
-export default EmpresaForm
+const mapStateToProps = store => ({
+  existe: store.situacao_cnpj.existe
+});
+
+export default connect(mapStateToProps)(EmpresaForm);
+
+//export default EmpresaForm

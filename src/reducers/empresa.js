@@ -1,10 +1,14 @@
 
 
-export function situacao_cnpj(state='',action) {
+export function situacao_cnpj(state={ existe: null },action) {
 
-    if(action.type === 'CNPJ_SITUACAO'){
-        return action.existe;
+    switch (action.type) {
+        case 'CNPJ_SITUACAO':
+            return {
+                ...state,
+                existe: action.existe
+            };
+        default:
+            return state;
     }
-
-    return state;
 }
